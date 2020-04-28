@@ -76,15 +76,23 @@ yhatSubmit = np.asarray(yhatSubmit)
 mean = np.mean(yhatSubmit)
 
 response = []
+
+ids = []
+friends = []
 for i in range(yhatSubmit.shape[0]):
     if (yhatSubmit[i] >= mean):
-       pass # response.append({'id': [i+1] ,1)
+       ids.append(i + 1)
+       friends.append(1)
     else:
-        response.append((i+1,0))
+       ids.append(i + 1)
+       friends.append(0)
+
 
 print(yhatSubmit)
 
 
+df = pandas.DataFrame(data={'ID': ids, 'Friends': friends})
+df.to_csv('answer.csv', index=False)
 
 print("response is ", response)
 
