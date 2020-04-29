@@ -1,5 +1,6 @@
 import sklearn.svm
 import sklearn.metrics
+import sklearn.preprocessing
 import numpy as np
 import pandas
 
@@ -16,6 +17,9 @@ newList = np.random.permutation(np.arange(X.shape[0]))
 randomX = X[newList]
 randomY = y[newList]
 
+# enc = sklearn.preprocessing.OneHotEncoder(sparse=False)
+# randomX = enc.fit_transform(randomX[:,2])
+# CompX = enc.fit_transform(CompX[:,2])
 
 
 for i in range(X.shape[0]):
