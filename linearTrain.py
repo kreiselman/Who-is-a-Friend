@@ -11,7 +11,7 @@ y = np.array(d.Friends)  # Labels
 X = np.array(d.iloc[:,3:5])  # Features
 
 Compd = pandas.read_csv('test.csv')
-CompX = np.array(d.iloc[:,3:5])  # Features
+CompX = np.array(Compd.iloc[:,3:5])  # Features
 
 
 newList = np.random.permutation(np.arange(X.shape[0]))
