@@ -20,6 +20,6 @@ one-hot vector
 
   - Try one hot encoding names and potentially choose the top ~10% to avoid overfitting
 
-- We should use a logistic regression model instead of linear
+- We should use a logistic regression model instead of linear regression
 
 - Do the deep learning model - the keras default is ok as long as we explore it and play with the depth of it
