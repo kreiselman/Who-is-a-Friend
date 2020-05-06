@@ -11,7 +11,7 @@ y = np.array(d.Friends)  # Labels
 X = np.array(d.iloc[:,3:5])  # Features
 
 Compd = pandas.read_csv('test.csv')
-CompX = np.array(d.iloc[:,3:5])  # Features
+CompX = np.array(Compd.iloc[:,3:5])  # Features
 
 
 newList = np.random.permutation(np.arange(X.shape[0]))
@@ -72,10 +72,18 @@ yte = randomY[20000:40000]
 
 # auc1 = sklearn.metrics.roc_auc_score(yte, yhat1)
 
-linear = sklearn.linear_model.LinearRegression()
-linear.fit(xtr,ytr)
-yhatSubmit = linear.predict(CompX)
+# linear = sklearn.linear_model.LinearRegression()
+# linear.fit(xtr,ytr)
+# yhatSubmit = linear.predict(CompX)
+#
+# yhatSubmit = np.asarray(yhatSubmit)
+#
+# mean = np.mean(yhatSubmit)
 
+
+logistic = sklearn.linear_model.LogisticRegression()
+logistic.fit(xtr,ytr)
+yhatSubmit = logistic.predict(CompX)
 yhatSubmit = np.asarray(yhatSubmit)
 
 mean = np.mean(yhatSubmit)
