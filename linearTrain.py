@@ -7,10 +7,11 @@ import pandas
 # Load data
 d = pandas.read_csv('train.csv')
 y = np.array(d.Friends)  # Labels
-X = np.array(d.iloc[:,3:6])  # Features
+# X = np.array(d.iloc[:,3:6])  # Features
+X = np.array(d.iloc[:,3:5])  # Features
 
 Compd = pandas.read_csv('test.csv')
-CompX = np.array(d.iloc[:,3:6])  # Features
+CompX = np.array(d.iloc[:,3:5])  # Features
 
 
 newList = np.random.permutation(np.arange(X.shape[0]))
@@ -22,34 +23,34 @@ randomY = y[newList]
 # CompX = enc.fit_transform(CompX[:,2])
 
 
-for i in range(X.shape[0]):
-    if(randomX[i,2] == "At Work"):
-        randomX[i,2] = .3
-    elif(randomX[i,2] == "Over a Meal"):
-        randomX[i,2] = .9
-    elif (randomX[i,2] == "Social_Media"):
-        randomX[i,2] = .3
-    elif (randomX[i,2] == "Party"):
-        randomX[i,2] = .7
-    elif (randomX[i,2] == "In Passing"):
-        randomX[i,2] = .1
-    elif (randomX[i,2] == "Class"):
-        randomX[i, 2] = .3
-
-
-for i in range(CompX.shape[0]):
-    if(CompX[i,2] == "At Work"):
-        CompX[i,2] = .3
-    elif(CompX[i,2] == "Over a Meal"):
-        CompX[i,2] = .9
-    elif (CompX[i,2] == "Social_Media"):
-        CompX[i,2] = .3
-    elif (CompX[i,2] == "Party"):
-        CompX[i,2] = .7
-    elif (CompX[i,2] == "In Passing"):
-        CompX[i,2] = .1
-    elif (CompX[i,2] == "Class"):
-        CompX[i, 2] = .3
+# for i in range(X.shape[0]):
+#     if(randomX[i,2] == "At Work"):
+#         randomX[i,2] = .3
+#     elif(randomX[i,2] == "Over a Meal"):
+#         randomX[i,2] = .9
+#     elif (randomX[i,2] == "Social_Media"):
+#         randomX[i,2] = .3
+#     elif (randomX[i,2] == "Party"):
+#         randomX[i,2] = .7
+#     elif (randomX[i,2] == "In Passing"):
+#         randomX[i,2] = .1
+#     elif (randomX[i,2] == "Class"):
+#         randomX[i, 2] = .3
+#
+#
+# for i in range(CompX.shape[0]):
+#     if(CompX[i,2] == "At Work"):
+#         CompX[i,2] = .3
+#     elif(CompX[i,2] == "Over a Meal"):
+#         CompX[i,2] = .9
+#     elif (CompX[i,2] == "Social_Media"):
+#         CompX[i,2] = .3
+#     elif (CompX[i,2] == "Party"):
+#         CompX[i,2] = .7
+#     elif (CompX[i,2] == "In Passing"):
+#         CompX[i,2] = .1
+#     elif (CompX[i,2] == "Class"):
+#         CompX[i, 2] = .3
 
 
 xtr = randomX[0:20000]
