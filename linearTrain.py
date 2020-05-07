@@ -1,6 +1,7 @@
 import sklearn.svm
 import sklearn.metrics
 import sklearn.preprocessing
+from sklearn.model_selection import train_test_split
 import numpy as np
 import pandas
 
@@ -53,12 +54,13 @@ randomY = y[newList]
 #         CompX[i, 2] = .3
 
 
-xtr = randomX[0:20000]
-ytr = randomY[0:20000]
+# xtr = randomX[0:20000]
+# ytr = randomY[0:20000]
 
-xte = randomX[20000:40000]
-yte = randomY[20000:40000]
+# xte = randomX[20000:40000]
+# yte = randomY[20000:40000]
 
+xtr, xte, ytr, yte = train_test_split(randomX, randomY, test_size = 0.5)
 
 
 # # Linear SVM
@@ -72,9 +74,9 @@ yte = randomY[20000:40000]
 
 # auc1 = sklearn.metrics.roc_auc_score(yte, yhat1)
 
-linear = sklearn.linear_model.LinearRegression()
-linear.fit(xtr,ytr)
-yhatSubmit = linear.predict(CompX)
+logistic = sklearn.linear_model.LogisticRegression()
+logistic.fit(xtr,ytr)
+yhatSubmit = logistic.predict(CompX)
 
 yhatSubmit = np.asarray(yhatSubmit)
 
@@ -85,12 +87,8 @@ response = []
 ids = []
 friends = []
 for i in range(yhatSubmit.shape[0]):
-    if (yhatSubmit[i] >= mean):
-       ids.append(i + 1)
-       friends.append(1)
-    else:
-       ids.append(i + 1)
-       friends.append(0)
+   ids.append(i + 1)
+   friends.append(yhatSubmit[i])
 
 
 print(yhatSubmit)
