@@ -77,29 +77,8 @@ xtr, xte, ytr, yte = train_test_split(randomX, randomY, test_size = 0.5)
 logistic = sklearn.linear_model.LogisticRegression()
 logistic.fit(xtr,ytr)
 yhatSubmit = logistic.predict(CompX)
+# yhatSubmit = np.asarray(yhatSubmit)
+ids = list(range(1, yhatSubmit.shape[0] + 1))
 
-yhatSubmit = np.asarray(yhatSubmit)
-
-mean = np.mean(yhatSubmit)
-
-response = []
-
-ids = []
-friends = []
-for i in range(yhatSubmit.shape[0]):
-   ids.append(i + 1)
-   friends.append(yhatSubmit[i])
-
-
-print(yhatSubmit)
-
-
-df = pandas.DataFrame(data={'ID': ids, 'Friends': friends})
+df = pandas.DataFrame(data={'ID': ids, 'Friends': yhatSubmit})
 df.to_csv('answer.csv', index=False)
-
-print("response is ", response)
-
-
-
-# d = {'col1': [1, 2], 'col2': [3, 4]}
-# df = pd.DataFrame(data=d)
