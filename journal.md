@@ -1,18 +1,29 @@
 # CS4243 Final - Journal
 
-4/27 - Today we implemented our first iteration of training using a linear regression model. We submitted the answer to Kaggle and got a private score of 0.49518. We are looking to improve that score, and want to identify certain areas where we can improve the accuracy.
+## 4/27 - Group Meeting
+
+Today we implemented our first iteration of training using a linear regression model. We submitted the answer to Kaggle and got a private score of 0.49518. We are looking to improve that score, and want to identify certain areas where we can improve the accuracy.
 
 
-4/29 -Meeting with TA comments from meeting
+## 4/29 -Meeting with TA
 [0,0,0,0,0,0]
+
 [1,0,0,0,0,0]
+
 w_1 = 0.5
+
 one-hot vector
+
 0 min -> 120 min
-15 17 
+
+15 17
+
 5 min interval
 
-5/6 - Meeting with Prof. Whitehill
+## 5/6 - Group Meeting
+Improved model accuracy by finding a typo in our code
+
+## 5/6 - Meeting with Prof. Whitehill
 
 - Since our feature space is limited, we should explore these additional featuers:
   - Geography of names and if that has effect
@@ -25,3 +36,6 @@ one-hot vector
 - We should use a logistic regression model instead of linear regression
 
 - Do the deep learning model - the keras default is ok as long as we explore it and play with the depth of it
+
+# 5/7 - Group Meeting
+Converted to a logistic regression model, trained using all features, started determining feature importance
