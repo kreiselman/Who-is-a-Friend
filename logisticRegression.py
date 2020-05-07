@@ -3,82 +3,25 @@ import sklearn.metrics
 import sklearn.preprocessing
 from sklearn.model_selection import train_test_split
 import numpy as np
-import pandas
+import pandas as pd
 
 # Load data
-d = pandas.read_csv('train.csv')
-y = np.array(d.Friends)  # Labels
-# X = np.array(d.iloc[:,3:6])  # Features
-X = np.array(d.iloc[:,3:5])  # Features
+train = pd.read_csv('train.csv')
+X = train.iloc[:,3:5]
+y = train['Friends']
 
-Compd = pandas.read_csv('test.csv')
-CompX = np.array(Compd.iloc[:,3:5])  # Features
+Compd = pd.read_csv('test.csv')
+CompX = Compd.iloc[:,3:5]
 
+# Split data
+xtr, xte, ytr, yte = train_test_split(X, y, test_size=0.5)
 
-newList = np.random.permutation(np.arange(X.shape[0]))
-randomX = X[newList]
-randomY = y[newList]
-
-# enc = sklearn.preprocessing.OneHotEncoder(sparse=False)
-# randomX = enc.fit_transform(randomX[:,2])
-# CompX = enc.fit_transform(CompX[:,2])
-
-
-# for i in range(X.shape[0]):
-#     if(randomX[i,2] == "At Work"):
-#         randomX[i,2] = .3
-#     elif(randomX[i,2] == "Over a Meal"):
-#         randomX[i,2] = .9
-#     elif (randomX[i,2] == "Social_Media"):
-#         randomX[i,2] = .3
-#     elif (randomX[i,2] == "Party"):
-#         randomX[i,2] = .7
-#     elif (randomX[i,2] == "In Passing"):
-#         randomX[i,2] = .1
-#     elif (randomX[i,2] == "Class"):
-#         randomX[i, 2] = .3
-#
-#
-# for i in range(CompX.shape[0]):
-#     if(CompX[i,2] == "At Work"):
-#         CompX[i,2] = .3
-#     elif(CompX[i,2] == "Over a Meal"):
-#         CompX[i,2] = .9
-#     elif (CompX[i,2] == "Social_Media"):
-#         CompX[i,2] = .3
-#     elif (CompX[i,2] == "Party"):
-#         CompX[i,2] = .7
-#     elif (CompX[i,2] == "In Passing"):
-#         CompX[i,2] = .1
-#     elif (CompX[i,2] == "Class"):
-#         CompX[i, 2] = .3
-
-
-# xtr = randomX[0:20000]
-# ytr = randomY[0:20000]
-
-# xte = randomX[20000:40000]
-# yte = randomY[20000:40000]
-
-xtr, xte, ytr, yte = train_test_split(randomX, randomY, test_size = 0.5)
-
-
-# # Linear SVM
-# linearSVM = sklearn.svm.LinearSVC(dual = False)
-# linearSVM.fit(xtr, ytr)
-# print("Lineasr SVM done")
-#
-# # yhat1 = linearSVM.decision_function(xte)  # Linear kernel
-#
-# yhatSubmit = linearSVM.decision_function(CompX)  # Linear kernel
-
-# auc1 = sklearn.metrics.roc_auc_score(yte, yhat1)
-
+# Train Model
 logistic = sklearn.linear_model.LogisticRegression()
-logistic.fit(xtr,ytr)
+logistic.fit(xtr, ytr)
 yhatSubmit = logistic.predict(CompX)
-# yhatSubmit = np.asarray(yhatSubmit)
-ids = list(range(1, yhatSubmit.shape[0] + 1))
 
-df = pandas.DataFrame(data={'ID': ids, 'Friends': yhatSubmit})
+# Export our answers
+ids = list(range(1, yhatSubmit.shape[0] + 1))
+df = pd.DataFrame(data={'ID': ids, 'Friends': yhatSubmit})
 df.to_csv('answer.csv', index=False)
