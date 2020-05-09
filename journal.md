@@ -39,3 +39,13 @@ Improved model accuracy by finding a typo in our code
 
 # 5/7 - Group Meeting
 Converted to a logistic regression model, trained using all features, started determining feature importance
+
+# 5/9 Justin
+- Tried to understand feature importance. Learned that the negative values
+indicate that it is used to determine if the value is 0. The positives have a 
+higher impact on resulting in a 1.
+- Found out about rfe which calculates the feature importance and recursively 
+finds the most important features to use. Added 5 rfe to see if adding features affects
+the percentage correct. It seems to depend on the selected data from the randomized training set
+but it seems to level off around 3/4 features.
+
