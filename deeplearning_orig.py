@@ -118,4 +118,4 @@ print(yhatSubmit)
 
 ids = list(range(1, yhatSubmit.shape[0] + 1))
 df = pd.DataFrame(data={'ID': ids, 'Friends': yhatSubmit.flatten()})
-df.to_csv('deep_answer.csv', index=False)
+df.to_csv('deep_answer_orig.csv', index=False)
