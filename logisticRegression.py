@@ -6,7 +6,8 @@ from sklearn.metrics import log_loss
 import numpy as np
 import pandas as pd
 from sklearn.feature_selection import RFE
-
+import random
+import numpy
 # Load data
 train = pd.read_csv('train.csv')
 test = pd.read_csv('test.csv')
@@ -125,3 +126,10 @@ print(rfe5.score(xte, yte))
 ids5 = list(range(1, rfeSubmit5.shape[0] + 1))
 df5 = pd.DataFrame(data={'ID': ids, 'Friends': yhatSubmit})
 df5.to_csv('answer_RFE5.csv', index=False)
+
+#Export to baseline file
+nums = []
+for x in range(0,50000):
+    nums.append(random.randrange(2))
+
+numpy.savetxt("Baseline.csv",nums, delimiter=",")
