@@ -49,3 +49,9 @@ finds the most important features to use. Added 5 rfe to see if adding features 
 the percentage correct. It seems to depend on the selected data from the randomized training set
 but it seems to level off around 3/4 features.
 
+#5/10 Group Work
+-Started writing the paper and creating the presentation
+-Separated the deep learning models beased on depth to see if there is a correlation between depth and accuracy
+-added accuracy to log and linear regression.
+-added random baseline to see if guessing results is equivalent to the models we made
+

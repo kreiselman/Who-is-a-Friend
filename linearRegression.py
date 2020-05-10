@@ -77,9 +77,10 @@ yhatSubmit = linear.predict(CompX)
 yhatSubmit = np.asarray(yhatSubmit)
 
 mean = np.mean(yhatSubmit)
-loss = (1/yhatSubmit.shape[0]) * np.sum(yhatSubmit - yte)**2
+loss = (1/yhatSubmit.shape[0]) * np.sum(yhatSubmit[:20000] - yte)**2
 
-
+auc1 = sklearn.metrics.roc_auc_score(yte, yhatSubmit[:20000])
+print("acc is", auc1)
 # prob = logistic.predict_proba(xte)
 # loss = log_loss(yte, prob)
 

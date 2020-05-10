@@ -45,7 +45,7 @@ yhatSubmit = logistic.predict(y[features])
 
 # Feature Importance (still testing to get it right)
 importance = logistic.coef_[0]
-print("Score of all features: ", logistic.score(xte, yte))
+print("Accuracy of all features: ", logistic.score(xte, yte))
 
 for i, v in enumerate(importance):
 	print('Feature:', features[i], 'Importance:', v)
@@ -68,7 +68,7 @@ print(rfe1.score(xte, yte))
 
 # Export our answers
 ids1 = list(range(1, rfeSubmit1.shape[0] + 1))
-df1 = pd.DataFrame(data={'ID': ids, 'Friends': yhatSubmit})
+df1 = pd.DataFrame(data={'ID': ids, 'Friends': rfeSubmit1})
 df1.to_csv('answer_RFE1.csv', index=False)
 
 rfe2 = RFE(model, 2)
@@ -82,7 +82,7 @@ print(rfe2.score(xte, yte))
 
 # Export our answers
 ids2 = list(range(1, rfeSubmit2.shape[0] + 1))
-df2 = pd.DataFrame(data={'ID': ids, 'Friends': yhatSubmit})
+df2 = pd.DataFrame(data={'ID': ids, 'Friends': rfeSubmit2})
 df2.to_csv('answer_RFE2.csv', index=False)
 
 rfe3 = RFE(model, 3)
@@ -96,7 +96,7 @@ print(rfe3.score(xte, yte))
 
 # Export our answers
 ids3 = list(range(1, rfeSubmit3.shape[0] + 1))
-df3 = pd.DataFrame(data={'ID': ids, 'Friends': yhatSubmit})
+df3 = pd.DataFrame(data={'ID': ids, 'Friends': rfeSubmit3})
 df3.to_csv('answer_RFE3.csv', index=False)
 
 rfe4 = RFE(model, 4)
@@ -110,7 +110,7 @@ print(rfe4.score(xte, yte))
 
 # Export our answers
 ids4 = list(range(1, rfeSubmit4.shape[0] + 1))
-df4 = pd.DataFrame(data={'ID': ids, 'Friends': yhatSubmit})
+df4 = pd.DataFrame(data={'ID': ids, 'Friends': rfeSubmit4})
 df4.to_csv('answer_RFE4.csv', index=False)
 
 rfe5 = RFE(model, 4)
@@ -124,12 +124,16 @@ print(rfe5.score(xte, yte))
 
 # Export our answers
 ids5 = list(range(1, rfeSubmit5.shape[0] + 1))
-df5 = pd.DataFrame(data={'ID': ids, 'Friends': yhatSubmit})
+df5 = pd.DataFrame(data={'ID': ids, 'Friends': rfeSubmit5})
 df5.to_csv('answer_RFE5.csv', index=False)
 
 #Export to baseline file
 nums = []
-for x in range(0,50000):
-    nums.append(random.randrange(2))
+for x in range(yhatSubmit.shape[0]):
+    nums.append(random.randint(0,1))
+print(nums)
 
-numpy.savetxt("Baseline.csv",nums, delimiter=",")
+
+idsRand = list(range(1, rfeSubmit5.shape[0] + 1))
+dfRand = pd.DataFrame(data={'ID': ids, 'Friends': nums})
+dfRand.to_csv('Baseline.csv', index=False)
