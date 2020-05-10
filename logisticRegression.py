@@ -2,6 +2,7 @@ import sklearn.svm
 import sklearn.metrics
 from sklearn import preprocessing
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import log_loss
 import numpy as np
 import pandas as pd
 from sklearn.feature_selection import RFE
@@ -33,6 +34,12 @@ xtr, xte, ytr, yte = train_test_split(X[features], X[target], test_size=0.5, shu
 # Train Model
 logistic = sklearn.linear_model.LogisticRegression()
 logistic.fit(xtr, ytr)
+
+prob = logistic.predict_proba(xte)
+loss = log_loss(yte, prob)
+
+print("Loss is ", loss)
+
 yhatSubmit = logistic.predict(y[features])
 
 # Feature Importance (still testing to get it right)
