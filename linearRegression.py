@@ -3,6 +3,7 @@ import sklearn.metrics
 import sklearn.preprocessing
 import numpy as np
 import pandas
+from sklearn.metrics import log_loss
 
 # Load data
 d = pandas.read_csv('train.csv')
@@ -18,9 +19,6 @@ newList = np.random.permutation(np.arange(X.shape[0]))
 randomX = X[newList]
 randomY = y[newList]
 
-# enc = sklearn.preprocessing.OneHotEncoder(sparse=False)
-# randomX = enc.fit_transform(randomX[:,2])
-# CompX = enc.fit_transform(CompX[:,2])
 
 
 # for i in range(X.shape[0]):
@@ -79,6 +77,14 @@ yhatSubmit = linear.predict(CompX)
 yhatSubmit = np.asarray(yhatSubmit)
 
 mean = np.mean(yhatSubmit)
+loss = (1/yhatSubmit.shape[0]) * np.sum(yhatSubmit - yte)**2
+
+
+# prob = logistic.predict_proba(xte)
+# loss = log_loss(yte, prob)
+
+print("Loss is ", loss)
+
 
 response = []
 
