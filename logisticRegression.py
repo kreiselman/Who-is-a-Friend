@@ -28,7 +28,7 @@ X = df[df[target].notnull()]
 y = df[df[target].isnull()]
 X[target] = X[target].astype(int)
 
-xtr, xte, ytr, yte = train_test_split(X[features], X[target], test_size=0.5)
+xtr, xte, ytr, yte = train_test_split(X[features], X[target], test_size=0.5, shuffle = False)
 
 # Train Model
 logistic = sklearn.linear_model.LogisticRegression()
