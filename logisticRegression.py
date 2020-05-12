@@ -1,4 +1,3 @@
-import sklearn.svm
 import sklearn.metrics
 from sklearn import preprocessing
 from sklearn.model_selection import train_test_split
@@ -6,8 +5,8 @@ from sklearn.metrics import log_loss
 import numpy as np
 import pandas as pd
 from sklearn.feature_selection import RFE
-import random
-import numpy
+
+
 # Load data
 train = pd.read_csv('train.csv')
 test = pd.read_csv('test.csv')

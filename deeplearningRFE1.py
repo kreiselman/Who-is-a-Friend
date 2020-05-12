@@ -1,5 +1,4 @@
 import sklearn.metrics
-from sklearn.metrics import log_loss
 from sklearn import preprocessing
 from sklearn.model_selection import train_test_split
 import numpy as np

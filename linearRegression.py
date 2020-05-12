@@ -1,8 +1,9 @@
 import sklearn.metrics
 import sklearn.preprocessing
+from sklearn.linear_model import LinearRegression
 import numpy as np
 import pandas
-from sklearn.metrics import log_loss
+
 
 # Load data
 d = pandas.read_csv('train.csv')
@@ -18,7 +19,7 @@ newList = np.random.permutation(np.arange(X.shape[0]))
 randomX = X[newList]
 randomY = y[newList]
 
-
+# Original attempt to hand classify Interaction type
 
 # for i in range(X.shape[0]):
 #     if(randomX[i,2] == "At Work"):
@@ -63,13 +64,18 @@ yhatSubmit = linear.predict(CompX)
 
 yhatSubmit = np.asarray(yhatSubmit)
 
-mean = np.mean(yhatSubmit)
+yhatSubmit = np.around(yhatSubmit)
+yhatSubmit = yhatSubmit.astype(int)
+
+# mean = np.mean(yhatSubmit)
 loss = (1/yhatSubmit.shape[0]) * np.sum(yhatSubmit[:20000] - yte)**2
 
+
+
+pc = np.mean(yhatSubmit[:20000] == yte)
 auc1 = sklearn.metrics.roc_auc_score(yte, yhatSubmit[:20000])
-print("acc is", auc1)
-# prob = logistic.predict_proba(xte)
-# loss = log_loss(yte, prob)
+print("acc is", pc)
+
 
 print("Loss is ", loss)
 
@@ -79,7 +85,7 @@ response = []
 ids = []
 friends = []
 for i in range(yhatSubmit.shape[0]):
-    if (yhatSubmit[i] >= mean):
+    if (yhatSubmit[i] == 1 ):
        ids.append(i + 1)
        friends.append(1)
     else:
@@ -92,10 +98,3 @@ print(yhatSubmit)
 
 df = pandas.DataFrame(data={'ID': ids, 'Friends': friends})
 df.to_csv('answer-linear.csv', index=False)
-
-print("response is ", response)
-
-
-
-# d = {'col1': [1, 2], 'col2': [3, 4]}
-# df = pd.DataFrame(data=d)
