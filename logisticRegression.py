@@ -153,18 +153,3 @@ ids5 = list(range(1, rfeSubmit5.shape[0] + 1))
 df5 = pd.DataFrame(data={'ID': ids, 'Friends': rfeSubmit5})
 df5.to_csv('answer_RFE5.csv', index=False)
 
-#Export to baseline file
-nums = []
-for x in range(yhatSubmit.shape[0]):
-    nums.append(random.randint(0,1))
-print(nums)
-
-nums = np.asarray(nums)
-pc = np.mean(nums[:27349] == yte)
-lossRand = log_loss(yte, nums[:27349])
-
-print("random loss is ", lossRand)
-print("random correct is", pc)
-idsRand = list(range(1, rfeSubmit5.shape[0] + 1))
-dfRand = pd.DataFrame(data={'ID': ids, 'Friends': nums})
-dfRand.to_csv('Baseline.csv', index=False)
