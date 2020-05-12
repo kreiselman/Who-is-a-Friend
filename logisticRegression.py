@@ -30,7 +30,7 @@ X = df[df[target].notnull()]
 y = df[df[target].isnull()]
 X[target] = X[target].astype(int)
 
-xtr, xte, ytr, yte = train_test_split(X[features], X[target], test_size=0.5, shuffle = False)
+xtr, xte, ytr, yte = train_test_split(X[features], X[target], test_size=0.5, shuffle = False, random_state= False)
 
 # Train Model
 logistic = sklearn.linear_model.LogisticRegression()
@@ -66,6 +66,12 @@ print(rfe1.support_)
 print(rfe1.ranking_)
 print(rfe1.score(xte, yte))
 
+prob = rfe1.predict_proba(xte)
+loss1 = log_loss(yte, prob)
+
+print("Loss is ", loss1, "\n")
+
+
 # Export our answers
 ids1 = list(range(1, rfeSubmit1.shape[0] + 1))
 df1 = pd.DataFrame(data={'ID': ids, 'Friends': rfeSubmit1})
@@ -79,6 +85,11 @@ print("\n", "rfe2")
 print(rfe2.support_)
 print(rfe2.ranking_)
 print(rfe2.score(xte, yte))
+
+prob = rfe2.predict_proba(xte)
+loss2 = log_loss(yte, prob)
+
+print("Loss is ", loss2, "\n")
 
 # Export our answers
 ids2 = list(range(1, rfeSubmit2.shape[0] + 1))
@@ -94,6 +105,11 @@ print(rfe3.support_)
 print(rfe3.ranking_)
 print(rfe3.score(xte, yte))
 
+prob = rfe3.predict_proba(xte)
+loss3 = log_loss(yte, prob)
+
+print("Loss is ", loss3, "\n")
+
 # Export our answers
 ids3 = list(range(1, rfeSubmit3.shape[0] + 1))
 df3 = pd.DataFrame(data={'ID': ids, 'Friends': rfeSubmit3})
@@ -108,12 +124,17 @@ print(rfe4.support_)
 print(rfe4.ranking_)
 print(rfe4.score(xte, yte))
 
+prob = rfe4.predict_proba(xte)
+loss4 = log_loss(yte, prob)
+
+print("Loss is ", loss4, "\n")
+
 # Export our answers
 ids4 = list(range(1, rfeSubmit4.shape[0] + 1))
 df4 = pd.DataFrame(data={'ID': ids, 'Friends': rfeSubmit4})
 df4.to_csv('answer_RFE4.csv', index=False)
 
-rfe5 = RFE(model, 4)
+rfe5 = RFE(model, 5)
 rfe5 = rfe5.fit(xtr, ytr)
 rfeSubmit5 = rfe5.predict(y[features])
 
@@ -121,6 +142,11 @@ print("\n", "rfe5")
 print(rfe5.support_)
 print(rfe5.ranking_)
 print(rfe5.score(xte, yte))
+
+prob = rfe5.predict_proba(xte)
+loss5 = log_loss(yte, prob)
+
+print("Loss is ", loss5, "\n")
 
 # Export our answers
 ids5 = list(range(1, rfeSubmit5.shape[0] + 1))
