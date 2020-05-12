@@ -1,4 +1,3 @@
-import sklearn.svm
 import sklearn.metrics
 import sklearn.preprocessing
 import numpy as np
@@ -57,18 +56,6 @@ ytr = randomY[0:20000]
 xte = randomX[20000:40000]
 yte = randomY[20000:40000]
 
-
-
-# # Linear SVM
-# linearSVM = sklearn.svm.LinearSVC(dual = False)
-# linearSVM.fit(xtr, ytr)
-# print("Lineasr SVM done")
-#
-# # yhat1 = linearSVM.decision_function(xte)  # Linear kernel
-#
-# yhatSubmit = linearSVM.decision_function(CompX)  # Linear kernel
-
-# auc1 = sklearn.metrics.roc_auc_score(yte, yhat1)
 
 linear = sklearn.linear_model.LinearRegression()
 linear.fit(xtr,ytr)
